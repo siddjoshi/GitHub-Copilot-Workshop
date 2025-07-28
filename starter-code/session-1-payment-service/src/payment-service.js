@@ -46,7 +46,7 @@ class PaymentService {
    * @param {Object} paymentData.metadata - Additional payment metadata
    * @returns {Promise<Object>} Payment result
    */
-  async processPayment(paymentData) {
+  async processPayment(_paymentData) {
     // TODO: Implement payment processing logic
     // Use Copilot prompt: "Implement secure payment processing with validation and fraud detection"
     throw new Error('Payment processing not implemented yet');
@@ -63,7 +63,7 @@ class PaymentService {
    * @param {string} cardData.cvv - Card verification value
    * @returns {Object} Validation result
    */
-  validateCreditCard(cardData) {
+  validateCreditCard(_cardData) {
     // TODO: Implement Luhn algorithm and card validation
     // Use Copilot prompt: "Implement Luhn algorithm for credit card validation"
     throw new Error('Card validation not implemented yet');
@@ -77,7 +77,7 @@ class PaymentService {
    * @param {Object} customerHistory - Customer payment history
    * @returns {Object} Fraud analysis result
    */
-  detectFraud(paymentData, customerHistory) {
+  detectFraud(_paymentData, _customerHistory) {
     // TODO: Implement fraud detection algorithms
     // Use Copilot prompt: "Create fraud detection logic using machine learning patterns"
     throw new Error('Fraud detection not implemented yet');
@@ -92,7 +92,7 @@ class PaymentService {
    * @param {string} reason - Refund reason
    * @returns {Promise<Object>} Refund result
    */
-  async processRefund(paymentId, amount, reason) {
+  async processRefund(_paymentId, _amount, _reason) {
     // TODO: Implement refund logic for different payment methods
     // Use Copilot prompt: "Implement refund processing with proper error handling"
     throw new Error('Refund processing not implemented yet');
@@ -102,10 +102,10 @@ class PaymentService {
    * Generate secure payment token for stored payment methods
    * TODO: Use Copilot to implement secure tokenization
    * 
-   * @param {Object} paymentMethod - Payment method to tokenize
+   * @param {Object} _paymentMethod - Payment method to tokenize
    * @returns {Promise<string>} Secure payment token
    */
-  async generatePaymentToken(paymentMethod) {
+  async generatePaymentToken(_paymentMethod) {
     // TODO: Implement secure payment tokenization
     // Use Copilot prompt: "Create secure payment tokenization with encryption"
     throw new Error('Payment tokenization not implemented yet');
@@ -150,3 +150,4 @@ module.exports = PaymentService;
  * /fix "Identify and fix potential security vulnerabilities"
  * @workspace "Add comprehensive error handling and logging"
  */
+
