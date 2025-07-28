@@ -1,6 +1,6 @@
 # 🚀 Session 3: Advanced DevOps with AI
 
-**Duration:** 45 minutes  
+**Duration:** 80 minutes  
 **Difficulty:** Advanced  
 **Points Available:** 70 points
 
@@ -12,6 +12,8 @@ By the end of this session, you will:
 - ✅ Generate production-ready **Infrastructure as Code**
 - ✅ Create **GitOps workflows** with AI assistance
 - ✅ Implement **Security-first DevOps** practices
+- ✅ Build **GitHub Actions workflows** for deployment automation
+- ✅ Debug and optimize **CI/CD pipelines** with Copilot
 
 ## 💡 Business Scenario
 
@@ -25,6 +27,9 @@ TechBank is launching a new digital banking platform and needs enterprise-grade 
 - **Zero-downtime deployments**
 - **SOC 2 compliance**
 - **99.99% SLA** with disaster recovery
+- **Complete CI/CD automation** with GitHub Actions
+- **Automated security scanning** and compliance checks
+- **Blue-green deployment** strategies
 
 **Current Challenge:**
 - Small DevOps team (2 engineers)
@@ -37,6 +42,9 @@ TechBank is launching a new digital banking platform and needs enterprise-grade 
 - Automated security scanning
 - Complete disaster recovery setup
 - GitOps workflow operational
+- **GitHub Actions pipelines** with automated testing
+- **Zero-downtime deployment** demonstrated
+- **Infrastructure drift detection** implemented
 
 ## 🛠️ Setup & Prerequisites
 
@@ -403,6 +411,63 @@ If you completed all checkpoints:
 - **☁️ Cloud Architect**: Designed enterprise-grade cloud infrastructure
 - **🔒 Security Champion**: Implemented zero-trust architecture
 - **🚀 DevOps Master**: Created production-ready CI/CD pipelines
+- **⚡ GitHub Actions Expert**: Built comprehensive automation workflows
+
+### 🎯 Bonus Challenge: GitHub Actions Mastery (20 minutes)
+
+#### **Challenge 3.5: Complete CI/CD Pipeline with GitHub Actions**
+**Points:** 25 bonus points
+
+Create a comprehensive GitHub Actions workflow that demonstrates:
+
+1. **Ask Copilot to create a workflow**:
+   ```
+   @workspace Create a GitHub Actions workflow for our banking platform that includes:
+   
+   - Multi-environment deployment (dev, staging, prod)
+   - Terraform validation and planning
+   - Security scanning with CodeQL
+   - Infrastructure drift detection
+   - Blue-green deployment strategy
+   - Rollback capabilities
+   - Slack notifications for deployments
+   ```
+
+2. **Implement advanced patterns**:
+   ```
+   Help me add these advanced GitHub Actions features:
+   - Matrix builds for multiple regions
+   - Conditional deployments based on branch
+   - Reusable workflows for common tasks
+   - Environment protection rules
+   - Deployment gates with manual approval
+   ```
+
+3. **Add monitoring and observability**:
+   ```
+   Create GitHub Actions workflows for:
+   - Infrastructure health checks
+   - Performance regression testing
+   - Security vulnerability scanning
+   - Cost optimization reports
+   - Compliance verification
+   ```
+
+#### **Sample GitHub Actions Integration**
+
+**Ask Copilot to help you build**:
+- `.github/workflows/infrastructure.yml` - Main infrastructure pipeline
+- `.github/workflows/security.yml` - Security scanning and compliance
+- `.github/workflows/deployment.yml` - Application deployment workflow
+- `.github/workflows/monitoring.yml` - Health checks and alerts
+
+#### **Key GitHub Actions Features to Implement**:
+- **Environment Variables**: Secure configuration management
+- **Secrets Management**: Integration with Azure Key Vault
+- **Artifact Management**: Store and deploy infrastructure artifacts
+- **Deployment Environments**: Dev, staging, and production gates
+- **Workflow Orchestration**: Coordinate multiple workflows
+- **Error Handling**: Robust failure recovery and notifications
 
 ### Business Impact Delivered
 - **Time to Market**: 60% faster deployment cycles

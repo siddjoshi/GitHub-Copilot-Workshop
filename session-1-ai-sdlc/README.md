@@ -1,8 +1,14 @@
 # 🎯 Session 1: AI-Powered Software Development Lifecycle
 
-**Duration:** 45 minutes  
+**Duration:** 80 minutes  
 **Difficulty:** Intermediate  
 **Points Available:** 50 points
+
+## 🙏 Acknowledgment and Attribution
+
+This session builds upon and incorporates concepts from the excellent [**Agents in SDLC Workshop**](https://github.com/sombaner/agents-in-sdlc-workshop) by @sombaner. We gratefully acknowledge this foundational work and encourage participants to explore the original repository for additional insights into AI-powered development workflows.
+
+*This implementation extends and adapts the original concepts for GitHub Copilot's latest features and enterprise scenarios.*
 
 ## 🎯 Learning Objectives
 

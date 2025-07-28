@@ -48,6 +48,30 @@ MegaBank has a 10-year-old Spring Boot 1.5 application that needs urgent moderni
 - Maven 3.9+
 - Docker Desktop
 - Node.js 20+ (for UI modernization)
+- **Java Upgrade Assistant CLI** (for automated migration analysis)
+
+### Java Upgrade Assistant Integration
+
+This session leverages the **Java Upgrade Assistant** to enhance Copilot's modernization capabilities:
+
+#### Installation
+```bash
+# Install Java Upgrade Assistant CLI
+curl -sSL https://aka.ms/java-upgrade-assistant | bash
+# or download from: https://github.com/microsoft/upgrade-assistant
+```
+
+#### Key Benefits
+- **Automated Analysis**: Identifies upgrade blockers and compatibility issues
+- **Copilot Synergy**: Use assistant findings to inform Copilot prompts
+- **Best Practices**: Follows Microsoft's Java modernization patterns
+- **Step-by-Step Guidance**: Structured approach to complex migrations
+
+#### Integration Workflow
+1. **Run Upgrade Assistant** to analyze current codebase
+2. **Review findings** and prioritize upgrade tasks
+3. **Use Copilot** with assistant context for implementation
+4. **Validate changes** using assistant recommendations
 
 ### Workshop Repository
 ```bash
