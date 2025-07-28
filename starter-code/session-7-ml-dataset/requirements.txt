@@ -1,0 +1,26 @@
+# Session 7: Data Science & ML Workshop Requirements
+# Customer Churn Prediction Dependencies
+
+# Core Data Science Libraries
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# Visualization Libraries
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Machine Learning Models
+xgboost>=2.0.0
+
+# Optional: Advanced ML Libraries
+# tensorflow>=2.13.0  # Uncomment for neural networks
+# shap>=0.42.0        # Uncomment for model interpretability
+# mlflow>=2.5.0       # Uncomment for MLOps features
+
+# Development & Testing
+pytest>=7.0.0
+jupyter>=1.0.0
+
+# Note: This workshop is compatible with Python 3.8+
+# Install with: pip install -r requirements.txt

@@ -165,10 +165,37 @@ This session builds upon excellent existing resources:
 
 ## 📖 Getting Started
 
+### Prerequisites Installation
+
+1. **Install Python Dependencies**:
+   ```bash
+   cd starter-code/session-7-ml-dataset/
+   pip install -r requirements.txt
+   ```
+
+2. **Verify Installation**:
+   ```bash
+   python churn_prediction.py
+   ```
+   
+3. **Run Tests** (Optional):
+   ```bash
+   python test_churn_prediction.py
+   ```
+
+### Workshop Execution
+
 1. Navigate to `starter-code/session-7-ml-dataset/`
 2. Load the customer churn dataset
 3. Start with Copilot Chat: `@workspace analyze this customer dataset and suggest an approach for churn prediction`
 4. Begin your EDA journey with AI assistance
+
+### Expected Performance Benchmarks
+
+- **Basic Implementation**: 80%+ accuracy achievable
+- **Optimized Implementation**: 85%+ accuracy for ML Wizard badge
+- **Complete Pipeline**: Runs in under 30 seconds
+- **Dataset Quality**: 19-25% realistic churn rate
 
 ## 🏆 Advanced Challenges
 
@@ -186,6 +213,28 @@ This session builds upon excellent existing resources:
 - Design experiment framework for model deployment
 - Implement champion/challenger model setup
 - Create statistical significance testing
+
+### 🎯 ML Wizard Achievement (>85% Accuracy)
+
+To unlock the ML Wizard badge, try the advanced optimization script:
+
+```bash
+python advanced_churn_prediction.py
+```
+
+**Key techniques for >85% accuracy:**
+- Advanced feature engineering (35+ features)
+- Hyperparameter tuning with GridSearchCV
+- Class imbalance handling with balanced weights
+- Ensemble methods and model stacking
+- Larger training dataset (1500+ samples)
+- Multiple XGBoost variants for diversity
+
+**Expected results:**
+- XGBoost Optimized: ~85.0% accuracy
+- Enhanced ensemble methods available
+- Comprehensive feature importance analysis
+- Production-ready model pipeline
 
 ## 💡 Copilot Best Practices for ML
 
