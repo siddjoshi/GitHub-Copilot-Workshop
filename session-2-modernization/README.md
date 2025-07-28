@@ -1,5 +1,9 @@
 # Java Application Modernization
 
+**Duration:** 20 minutes  
+**Difficulty:** Advanced  
+**Points Available:** 50 points
+
 ## Overview
 
 This session focuses on modernizing the legacy banking application from Java 8/Spring Boot 1.5 to Java 21/Spring Boot 3.2+.
