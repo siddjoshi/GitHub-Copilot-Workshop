@@ -21,7 +21,7 @@
 
 terraform {
   required_version = ">= 1.5"
-  
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -70,10 +70,10 @@ locals {
   # TODO: Use Copilot to enhance naming conventions
   project_name = "techbank"
   environment  = var.environment
-  
+
   # Resource naming
   resource_suffix = random_string.suffix.result
-  
+
   # Common tags - TODO: Expand with Copilot for compliance
   common_tags = {
     Project     = local.project_name
@@ -82,7 +82,7 @@ locals {
     Owner       = "TechBank-DevOps"
     # TODO: Add compliance tags (SOX, PCI DSS, etc.)
   }
-  
+
   # Network configuration
   # TODO: Use Copilot to design comprehensive network architecture
   address_space = {
@@ -121,7 +121,7 @@ resource "azurerm_subnet" "aks" {
   resource_group_name  = azurerm_resource_group.primary.name
   virtual_network_name = azurerm_virtual_network.primary.name
   address_prefixes     = ["10.0.1.0/24"]
-  
+
   # TODO: Add service endpoints and delegation
   # Use Copilot prompt: "@azure configure subnet for AKS with proper security"
 }
@@ -131,7 +131,7 @@ resource "azurerm_subnet" "database" {
   resource_group_name  = azurerm_resource_group.primary.name
   virtual_network_name = azurerm_virtual_network.primary.name
   address_prefixes     = ["10.0.2.0/24"]
-  
+
   # TODO: Configure private endpoints
   # Use Copilot prompt: "@azure add private endpoint configuration for databases"
 }
