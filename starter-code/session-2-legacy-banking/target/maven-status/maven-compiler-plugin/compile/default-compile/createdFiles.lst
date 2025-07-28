@@ -1,0 +1,6 @@
+com/megabank/banking/service/AccountService.class
+com/megabank/banking/LegacyBankingApplication.class
+com/megabank/banking/config/LegacySecurityConfig.class
+com/megabank/banking/controller/AccountController.class
+com/megabank/banking/model/Account.class
+com/megabank/banking/repository/AccountRepository.class
