@@ -1,508 +1,494 @@
-# 🚀 Session 3: Advanced DevOps with AI
+# 🚀 Session 3: Advanced DevOps with GitHub Copilot
+## Building Modern E-Commerce Infrastructure with .NET eShop
 
-**Duration:** 80 minutes  
-**Difficulty:** Advanced  
-**Points Available:** 70 points
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/)
+[![Azure](https://img.shields.io/badge/Azure-Cloud-blue.svg)](https://azure.microsoft.com/)
+[![Terraform](https://img.shields.io/badge/Terraform-1.5+-purple.svg)](https://terraform.io/)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28+-blue.svg)](https://kubernetes.io/)
 
-## 🎯 Learning Objectives
+> **Objective**: Learn to use GitHub Copilot for building production-ready DevOps pipelines, Infrastructure as Code, and deployment automation using Microsoft's .NET eShop reference application.
 
-By the end of this session, you will:
-- ✅ Master **@azure chat participant** for cloud infrastructure
-- ✅ Use **@terminal chat participant** for complex CLI operations
-- ✅ Generate production-ready **Infrastructure as Code**
-- ✅ Create **GitOps workflows** with AI assistance
-- ✅ Implement **Security-first DevOps** practices
-- ✅ Build **GitHub Actions workflows** for deployment automation
-- ✅ Debug and optimize **CI/CD pipelines** with Copilot
+## 🎯 Session Overview
 
-## 💡 Business Scenario
+In this session, you'll leverage GitHub Copilot to:
+- **Fork and setup** the [.NET eShop application](https://github.com/dotnet/eShop)
+- **Generate Infrastructure as Code** using Terraform for Azure
+- **Create CI/CD pipelines** with GitHub Actions
+- **Deploy microservices** to Azure Kubernetes Service (AKS)
+- **Implement monitoring** and observability solutions
+- **Setup disaster recovery** and multi-region deployment
 
-**FinTech Startup: Scalable Banking Platform**
+**Estimated Duration**: 25 minutes  
+**Difficulty Level**: Intermediate to Advanced  
+**Prerequisites**: Azure subscription, GitHub account, Visual Studio Code
 
-TechBank is launching a new digital banking platform and needs enterprise-grade infrastructure:
+## 🏗️ Architecture Overview
 
-**Requirements:**
-- **Multi-region deployment** (US, EU, APAC)
-- **Auto-scaling** for 1M+ users
-- **Zero-downtime deployments**
-- **SOC 2 compliance**
-- **99.99% SLA** with disaster recovery
-- **Complete CI/CD automation** with GitHub Actions
-- **Automated security scanning** and compliance checks
-- **Blue-green deployment** strategies
+We'll deploy the .NET eShop application with this cloud-native architecture:
 
-**Current Challenge:**
-- Small DevOps team (2 engineers)
-- 6-month go-to-live deadline
-- Complex regulatory requirements
-- Need for modern CI/CD practices
-
-**Success Metrics:**
-- Infrastructure deployed in 3 regions
-- Automated security scanning
-- Complete disaster recovery setup
-- GitOps workflow operational
-- **GitHub Actions pipelines** with automated testing
-- **Zero-downtime deployment** demonstrated
-- **Infrastructure drift detection** implemented
-
-## 🛠️ Setup & Prerequisites
-
-### Required Tools
-- VS Code with GitHub Copilot extensions
-- Azure CLI or AWS CLI
-- Terraform 1.5+
-- kubectl (Kubernetes CLI)
-- Helm 3.10+
-- Docker Desktop
-
-### New Copilot Features for DevOps
-- **@azure participant**: Azure-specific expertise
-- **@terminal participant**: CLI command assistance
-- **Remote MCP servers**: External tool integration
-- **Web search capabilities**: Latest documentation
-
-### Workshop Repository
-```bash
-# Clone the DevOps starter
-git clone https://github.com/workshop/devops-banking-platform
-cd devops-banking-platform/session-3
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Azure Front Door + WAF                   │
+│                  (Global Load Balancer)                     │
+└─────────────────────┬───────────────────────────────────────┘
+                      │
+              ┌───────▼───────┐
+              │               │
+    ┌─────────▼─────┐  ┌──────▼──────┐
+    │ Primary Region │  │ DR Region   │
+    │   (East US)    │  │ (West US 2) │
+    │                │  │             │
+    │ ┌─────────────┐│  │┌───────────┐│
+    │ │ AKS Cluster ││  ││AKS Cluster││
+    │ │             ││  ││           ││
+    │ │ eShop APIs  ││  ││eShop APIs ││
+    │ │ - Catalog   ││  ││- Catalog  ││
+    │ │ - Basket    ││  ││- Basket   ││
+    │ │ - Ordering  ││  ││- Ordering ││
+    │ │ - Payment   ││  ││- Payment  ││
+    │ │ - Identity  ││  ││- Identity ││
+    │ └─────────────┘│  │└───────────┘│
+    │                │  │             │
+    │ ┌─────────────┐│  │┌───────────┐│
+    │ │ Azure SQL   ││  ││Azure SQL  ││
+    │ │ (Primary)   ││  ││(Replica)  ││
+    │ └─────────────┘│  │└───────────┘│
+    └─────────────────┘  └─────────────┘
 ```
 
-## 👣 Step-by-Step Walkthrough
+## 🛠️ Prerequisites Setup
 
-### Phase 1: Infrastructure Planning with AI (12 minutes)
+### Required Tools Verification
 
-#### 🎯 Checkpoint 3.1: Azure Architecture Design
-**Points:** 15 points
+Use GitHub Copilot to verify your environment:
 
-1. **Initialize Azure Context**:
-   ```
-   @azure I need to design a multi-region banking platform architecture on Azure. Help me create:
+```powershell
+# @terminal Check if required tools are installed and show versions
+# If any tools are missing, provide PowerShell installation commands
 
-   CORE REQUIREMENTS:
-   - Microservices architecture (5-7 services)
-   - Multi-region deployment (East US, West Europe, Southeast Asia)
-   - Auto-scaling based on demand
-   - Financial-grade security and compliance
-   - 99.99% availability with disaster recovery
+# Expected tools:
+# - Azure CLI
+# - Terraform  
+# - kubectl
+# - Helm
+# - Docker Desktop
+# - .NET 8 SDK
+# - Git
+```
 
-   SERVICES TO DEPLOY:
-   - User authentication service
-   - Account management API
-   - Transaction processing engine
-   - Notification service
-   - Audit and compliance service
+### Azure Environment Setup
 
-   INFRASTRUCTURE COMPONENTS:
-   - AKS clusters in each region
-   - Azure SQL with geo-replication
-   - Azure Key Vault for secrets
-   - Application Gateway with WAF
-   - Azure Monitor and Log Analytics
-   - Azure Service Bus for messaging
+```bash
+# Login to Azure
+az login
 
-   Generate a comprehensive architecture diagram description and resource planning.
-   ```
+# Set your subscription
+az account set --subscription "your-subscription-id"
 
-2. **Expected Output**: Detailed architecture plan with:
-   - Resource naming conventions
-   - Network topology
-   - Security boundaries
-   - Scaling strategies
-   - Cost estimates
+# Create service principal for automation
+az ad sp create-for-rbac --name "eshop-devops-sp" \
+  --role="Contributor" \
+  --scopes="/subscriptions/YOUR_SUBSCRIPTION_ID"
+```
 
-#### 🎯 Checkpoint 3.2: Security and Compliance Framework
-**Points:** 10 points
+## 📋 Step-by-Step Walkthrough (25 minutes total)
 
-1. **Security Architecture with Azure**:
-   ```
-   @azure design a comprehensive security framework for the banking platform:
+### Phase 1: Application Setup
 
-   SECURITY REQUIREMENTS:
-   - Zero Trust network architecture
-   - Identity and Access Management (Azure AD)
-   - API security with OAuth2/OpenID Connect
-   - Data encryption at rest and in transit
-   - Security monitoring and incident response
-   - Compliance auditing (SOX, PCI DSS)
+#### 🎯 Checkpoint 3.1: Fork and Setup eShop Application
+**Points**: 15 points
 
-   AZURE SECURITY SERVICES:
-   - Azure Security Center configuration
-   - Azure Sentinel for SIEM
-   - Azure Key Vault integration
-   - Azure Policy for compliance
-   - Network Security Groups setup
-   - Private Link configurations
-
-   Generate Terraform modules for security infrastructure.
+1. **Fork the eShop Repository**:
+   ```bash
+   # Fork https://github.com/dotnet/eShop to your GitHub account
+   # Clone your fork locally
+   git clone https://github.com/YOUR_USERNAME/eShop.git
+   cd eShop
    ```
 
-### Phase 2: Infrastructure as Code Generation (18 minutes)
+2. **Explore the Application Architecture**:
+   ```
+   @workspace analyze the eShop application structure and explain:
+   - The microservices architecture
+   - Database requirements for each service
+   - API gateway configuration
+   - Frontend applications (Web, Admin, Mobile)
+   - Docker compose setup for local development
+   
+   Create a markdown summary of the key components.
+   ```
 
-#### 🎯 Checkpoint 3.3: Terraform Multi-Region Setup
-**Points:** 20 points
+3. **Local Development Setup**:
+   ```
+   @terminal help me set up the eShop application for local development:
+   - Install required .NET dependencies
+   - Configure Docker containers
+   - Set up local databases
+   - Start the application stack
+   - Verify all services are running
+   ```
+
+#### 🎯 Checkpoint 3.2: Container Optimization  
+**Points**: 10 points
+
+1. **Optimize Dockerfiles**:
+   ```
+   @workspace examine the existing Dockerfiles in the eShop project and suggest optimizations for:
+   - Multi-stage builds
+   - Layer caching efficiency  
+   - Security best practices
+   - Size reduction techniques
+   - Production readiness
+   
+   Generate improved Dockerfiles for key services.
+   ```
+
+### Phase 2: Infrastructure as Code
+
+#### 🎯 Checkpoint 3.3: Azure Infrastructure with Terraform
+**Points**: 25 points
 
 1. **Generate Terraform Configuration**:
    ```
-   @azure create production-ready Terraform configuration for the banking platform:
+   @azure create production-ready Terraform configuration for the eShop platform:
 
    TERRAFORM STRUCTURE:
    ├── modules/
    │   ├── aks-cluster/
-   │   ├── azure-sql/
+   │   ├── azure-sql/  
    │   ├── key-vault/
    │   ├── application-gateway/
+   │   ├── redis-cache/
+   │   ├── service-bus/
    │   └── monitoring/
    ├── environments/
    │   ├── dev/
    │   ├── staging/
    │   └── production/
    └── global/
-       └── shared-resources/
+       └── shared-services/
 
    REQUIREMENTS:
-   - Module-based architecture for reusability
-   - Environment-specific variable files
-   - State file management with Azure Storage
-   - Resource tagging and naming conventions
-   - Cost optimization configurations
-   - Disaster recovery setup
-
-   Include complete variable definitions and outputs.
+   - AKS cluster with autoscaling (3-50 nodes)
+   - Azure SQL databases for each microservice
+   - Azure Cache for Redis
+   - Azure Service Bus for messaging
+   - Application Gateway with WAF
+   - Azure Key Vault for secrets
+   - Azure Container Registry
+   - Log Analytics and Application Insights
+   - Multi-region setup (primary + DR)
+   - Network security groups and private endpoints
    ```
 
 2. **Advanced Terraform Features**:
    ```
-   @azure enhance the Terraform configuration with advanced features:
-
-   ADVANCED CONFIGURATIONS:
+   @azure enhance the Terraform configuration with:
+   
+   ADVANCED FEATURES:
    - Conditional resource creation based on environment
    - Dynamic blocks for complex configurations
-   - Local values for computed properties
-   - Data sources for existing resources
+   - Remote state management with Azure Storage
    - Terraform workspaces for environment isolation
-   - Module versioning and registry usage
-
-   SECURITY HARDENING:
+   - Custom modules with versioning
+   - Data sources for existing resources
+   
+   SECURITY FEATURES:
+   - Zero-trust network architecture
+   - Private endpoints for all PaaS services
    - Network isolation with VNets and subnets
-   - Private endpoints for all services
    - Azure Firewall configuration
-   - DDoS protection setup
    - SSL/TLS certificate management
-
-   Generate optimized Terraform code with best practices.
+   - Azure AD integration
    ```
 
 #### 🎯 Checkpoint 3.4: Kubernetes Manifests and Helm Charts
-**Points:** 15 points
+**Points**: 20 points
 
-1. **Generate Kubernetes Configurations**:
+1. **Generate Kubernetes Manifests**:
    ```
-   @workspace create comprehensive Kubernetes manifests for the banking services:
-
-   KUBERNETES RESOURCES:
-   - Deployment configurations with resource limits
-   - Service definitions with load balancing
-   - ConfigMaps for application configuration
-   - Secrets management integration
-   - HorizontalPodAutoscaler (HPA) setup
-   - NetworkPolicy for security isolation
-   - PodSecurityPolicy configurations
-   - Ingress controllers with SSL termination
-
-   SERVICE REQUIREMENTS:
-   - Health checks and readiness probes
-   - Rolling update strategies
-   - Resource requests and limits
-   - Anti-affinity rules for high availability
-   - Persistent volume claims for data
-   - Service mesh integration (Istio)
-
-   Generate production-ready YAML manifests.
+   @workspace create Kubernetes manifests for the eShop microservices:
+   
+   For each service (Catalog, Basket, Ordering, Payment, Identity, WebMVC, WebSPA):
+   - Deployment with resource limits and requests
+   - Service (ClusterIP for internal, LoadBalancer for external)
+   - HorizontalPodAutoscaler
+   - PodDisruptionBudget
+   - ConfigMap for application settings
+   - Secret for sensitive configuration
+   - NetworkPolicy for security
+   - ServiceMonitor for Prometheus
+   
+   Include proper labeling and annotations for observability.
    ```
 
-2. **Helm Chart Development**:
+2. **Create Helm Charts**:
    ```
-   @workspace create Helm charts for the banking platform:
-
-   HELM STRUCTURE:
-   banking-platform/
+   @workspace convert the Kubernetes manifests into a comprehensive Helm chart:
+   
+   HELM CHART STRUCTURE:
    ├── Chart.yaml
    ├── values.yaml
    ├── values-dev.yaml
-   ├── values-staging.yaml
-   ├── values-prod.yaml
+   ├── values-staging.yaml  
+   ├── values-production.yaml
    └── templates/
-       ├── deployment.yaml
-       ├── service.yaml
-       ├── ingress.yaml
-       ├── configmap.yaml
-       ├── secret.yaml
-       └── tests/
-
-   FEATURES:
+       ├── deployments/
+       ├── services/
+       ├── configmaps/
+       ├── secrets/
+       ├── ingress/
+       └── monitoring/
+   
+   Include:
    - Environment-specific value files
-   - Template functions and helpers
-   - Chart dependencies for databases
-   - Hook for database migrations
-   - RBAC configurations
-   - Monitoring and alerting setup
-
-   Include chart testing and validation.
+   - Templating for scalability
+   - Dependencies for databases and messaging
+   - Health checks and readiness probes
+   - Resource quotas and limits
+   - Security contexts and policies
    ```
 
-### Phase 3: CI/CD Pipeline Automation (10 minutes)
+### Phase 3: CI/CD Pipeline Automation
 
-#### 🎯 Checkpoint 3.5: GitOps Workflow Implementation
-**Points:** 15 points
+#### 🎯 Checkpoint 3.5: GitHub Actions Workflows
+**Points**: 25 points
 
-1. **Advanced GitHub Actions Pipeline**:
+1. **Build and Test Pipeline**:
    ```
-   @workspace create a comprehensive GitOps pipeline for the banking platform:
-
-   PIPELINE STAGES:
-   1. Code Quality & Security Scanning
-      - SonarQube analysis
-      - SAST/DAST security testing
-      - Dependency vulnerability scanning
-      - License compliance checking
-
-   2. Build & Test
-      - Multi-architecture Docker builds
-      - Unit and integration testing
-      - Contract testing with Pact
-      - Performance testing with K6
-
-   3. Infrastructure Deployment
-      - Terraform plan and apply
-      - Infrastructure testing with Terratest
-      - Compliance validation
-      - Cost estimation and approval
-
-   4. Application Deployment
-      - Helm chart deployment
-      - Blue-green deployment strategy
-      - Canary releases with Flagger
-      - Automated rollback on failure
-
-   5. Post-Deployment
-      - Smoke testing
-      - Performance validation
-      - Security verification
-      - Monitoring setup validation
-
-   Generate complete GitHub Actions workflows.
+   @workspace create GitHub Actions workflows for the eShop application:
+   
+   BUILD WORKFLOW (.github/workflows/build.yml):
+   - Trigger on push to main and pull requests
+   - Matrix strategy for multiple .NET versions
+   - Build all microservices
+   - Run unit tests with coverage reporting
+   - Run integration tests
+   - Security scanning with CodeQL
+   - Dependency vulnerability scanning
+   - Build and push Docker images to ACR
+   - Generate SBOM (Software Bill of Materials)
    ```
 
-2. **ArgoCD GitOps Configuration**:
+2. **Infrastructure Deployment Pipeline**:
    ```
-   @workspace create ArgoCD configurations for GitOps deployment:
-
-   ARGOCD SETUP:
-   - Application definitions for each service
-   - Environment-specific configurations
-   - Multi-cluster deployment
-   - Progressive delivery setup
-   - Policy enforcement with OPA Gatekeeper
-   - Secret management with External Secrets Operator
-   - Monitoring and alerting integration
-
-   Include complete ArgoCD application manifests and policies.
+   @azure create GitHub Actions workflow for infrastructure deployment:
+   
+   INFRASTRUCTURE WORKFLOW (.github/workflows/infrastructure.yml):
+   - Terraform plan on pull requests
+   - Terraform apply on merge to main
+   - Environment approvals for production
+   - Azure authentication with service principal
+   - Terraform state locking
+   - Drift detection and remediation
+   - Cost estimation with Infracost
+   - Security compliance scanning
    ```
 
-### Phase 4: Monitoring and Observability (5 minutes)
-
-#### 🎯 Checkpoint 3.6: Comprehensive Monitoring Setup
-**Points:** 10 points
-
-1. **Observability Stack with Azure**:
+3. **Application Deployment Pipeline**:
    ```
-   @azure create a comprehensive observability solution:
+   @workspace create application deployment workflow:
+   
+   DEPLOYMENT WORKFLOW (.github/workflows/deploy.yml):
+   - Environment-specific deployments (dev → staging → production)
+   - Blue-green deployment strategy
+   - Helm chart deployment to AKS
+   - Database migration automation
+   - Smoke tests after deployment
+   - Rollback capability
+   - Slack/Teams notifications
+   - Performance testing integration
+   ```
 
+#### 🎯 Checkpoint 3.6: Advanced DevOps Practices
+**Points**: 15 points
+
+1. **GitOps with ArgoCD**:
+   ```
+   @workspace implement GitOps workflow:
+   - Install ArgoCD on AKS cluster
+   - Create Application manifests for each environment
+   - Set up auto-sync policies
+   - Configure webhooks for deployment notifications
+   - Implement progressive delivery with Argo Rollouts
+   ```
+
+2. **Security Scanning Integration**:
+   ```
+   @workspace add comprehensive security scanning:
+   - Container image scanning with Trivy
+   - Infrastructure as Code scanning
+   - Secret detection in code
+   - License compliance checking
+   - OWASP dependency scanning
+   - Policy as Code with Open Policy Agent
+   ```
+
+### Phase 4: Monitoring and Observability
+
+#### 🎯 Checkpoint 3.7: Comprehensive Monitoring Setup
+**Points**: 20 points
+
+1. **Azure Monitor and Application Insights**:
+   ```
+   @azure implement monitoring for the eShop application:
+   
    MONITORING COMPONENTS:
+   - Application Insights for each microservice
+   - Custom metrics and telemetry
+   - Distributed tracing configuration
+   - Log Analytics workspace
+   - Azure Monitor alerts and action groups
+   - Grafana dashboards for visualization
+   - Azure Service Health monitoring
+   ```
+
+2. **Prometheus and Grafana Stack**:
+   ```
+   @workspace deploy monitoring stack to Kubernetes:
    - Prometheus for metrics collection
    - Grafana for visualization
-   - Azure Monitor integration
-   - Application Insights for APM
-   - Azure Log Analytics for log aggregation
-   - Azure Sentinel for security monitoring
-
-   ALERTING SETUP:
-   - SLA-based alerting rules
-   - Anomaly detection for fraud
-   - Performance degradation alerts
-   - Security incident notifications
-   - Business metric monitoring
-
-   DASHBOARDS:
-   - Executive summary dashboard
-   - Technical operations dashboard
-   - Security monitoring dashboard
-   - Business metrics dashboard
-
-   Generate complete monitoring configurations.
+   - AlertManager for alert routing
+   - Node Exporter for infrastructure metrics
+   - Custom ServiceMonitors for application metrics
+   - Pre-built dashboards for .NET applications
+   - Integration with Azure Monitor
    ```
 
-2. **Terminal Commands for Setup**:
+#### 🎯 Checkpoint 3.8: Disaster Recovery and Backup
+**Points**: 10 points
+
+1. **Backup Strategy Implementation**:
    ```
-   @terminal help me create a script that sets up the entire monitoring stack:
-
-   SCRIPT REQUIREMENTS:
-   - Install Prometheus Operator
-   - Deploy Grafana with pre-configured dashboards
-   - Setup log forwarding to Azure
-   - Configure alert routing
-   - Validate monitoring endpoints
-   - Run health checks
-
-   Include error handling and rollback procedures.
+   @azure implement backup and disaster recovery:
+   - Azure Backup for AKS persistent volumes
+   - Azure SQL geo-replication
+   - Application data backup automation
+   - Configuration backup to Azure Storage
+   - Recovery procedures documentation
+   - RTO/RPO testing automation
    ```
 
-## 📍 Final Validation Checklist
+### Phase 5: Performance and Scaling
 
-### ✅ Infrastructure Requirements
-- [ ] Multi-region Azure architecture designed
-- [ ] Terraform modules created and tested
-- [ ] Kubernetes manifests with security policies
-- [ ] Helm charts with environment configurations
-- [ ] GitOps pipeline with security scanning
-- [ ] Monitoring and alerting operational
-- [ ] Disaster recovery procedures documented
+#### 🎯 Checkpoint 3.9: Auto-scaling and Performance
+**Points**: 15 points
 
-### ✅ Copilot Features Utilized
-- [ ] @azure for cloud architecture guidance
-- [ ] @terminal for CLI automation
-- [ ] @workspace for configuration generation
-- [ ] Security-focused prompt engineering
-- [ ] Multi-model approach for complex tasks
-
-### ✅ Security & Compliance
-- [ ] Zero Trust network implementation
-- [ ] Secrets management with Key Vault
-- [ ] Security scanning in CI/CD
-- [ ] Compliance monitoring setup
-- [ ] Audit logging configured
-
-## 🎉 Session Wrap-Up
-
-### DevOps Transformation Achieved
-
-1. **Infrastructure Automation**:
-   - 100% Infrastructure as Code
-   - Multi-environment consistency
-   - Automated provisioning and updates
-   - Cost optimization built-in
-
-2. **Security Integration**:
-   - Security-first approach
-   - Automated compliance checking
-   - Continuous security monitoring
-   - Incident response automation
-
-3. **Operational Excellence**:
-   - GitOps workflow implementation
-   - Comprehensive observability
-   - Automated deployment strategies
-   - Disaster recovery capabilities
-
-### 🏆 Achievement Unlocked
-If you completed all checkpoints:
-- **☁️ Cloud Architect**: Designed enterprise-grade cloud infrastructure
-- **🔒 Security Champion**: Implemented zero-trust architecture
-- **🚀 DevOps Master**: Created production-ready CI/CD pipelines
-- **⚡ GitHub Actions Expert**: Built comprehensive automation workflows
-
-### 🎯 Bonus Challenge: GitHub Actions Mastery (20 minutes)
-
-#### **Challenge 3.5: Complete CI/CD Pipeline with GitHub Actions**
-**Points:** 25 bonus points
-
-Create a comprehensive GitHub Actions workflow that demonstrates:
-
-1. **Ask Copilot to create a workflow**:
+1. **Advanced Scaling Configuration**:
    ```
-   @workspace Create a GitHub Actions workflow for our banking platform that includes:
+   @workspace implement comprehensive scaling:
    
-   - Multi-environment deployment (dev, staging, prod)
-   - Terraform validation and planning
-   - Security scanning with CodeQL
-   - Infrastructure drift detection
-   - Blue-green deployment strategy
-   - Rollback capabilities
-   - Slack notifications for deployments
+   SCALING STRATEGIES:
+   - Horizontal Pod Autoscaler (HPA) with custom metrics
+   - Vertical Pod Autoscaler (VPA)
+   - Cluster Autoscaler configuration
+   - Azure SQL database auto-scaling
+   - Redis cache scaling policies
+   - Load testing with Azure Load Testing
+   - Performance benchmarking automation
    ```
 
-2. **Implement advanced patterns**:
+2. **Performance Optimization**:
    ```
-   Help me add these advanced GitHub Actions features:
-   - Matrix builds for multiple regions
-   - Conditional deployments based on branch
-   - Reusable workflows for common tasks
-   - Environment protection rules
-   - Deployment gates with manual approval
-   ```
-
-3. **Add monitoring and observability**:
-   ```
-   Create GitHub Actions workflows for:
-   - Infrastructure health checks
-   - Performance regression testing
-   - Security vulnerability scanning
-   - Cost optimization reports
-   - Compliance verification
+   @workspace optimize application performance:
+   - Implement caching strategies
+   - Database query optimization
+   - CDN configuration for static assets
+   - API rate limiting and throttling
+   - Connection pooling optimization
+   - Memory and CPU profiling integration
    ```
 
-#### **Sample GitHub Actions Integration**
+## 🏆 Success Criteria
 
-**Ask Copilot to help you build**:
-- `.github/workflows/infrastructure.yml` - Main infrastructure pipeline
-- `.github/workflows/security.yml` - Security scanning and compliance
-- `.github/workflows/deployment.yml` - Application deployment workflow
-- `.github/workflows/monitoring.yml` - Health checks and alerts
+### Scoring Rubric
 
-#### **Key GitHub Actions Features to Implement**:
-- **Environment Variables**: Secure configuration management
-- **Secrets Management**: Integration with Azure Key Vault
-- **Artifact Management**: Store and deploy infrastructure artifacts
-- **Deployment Environments**: Dev, staging, and production gates
-- **Workflow Orchestration**: Coordinate multiple workflows
-- **Error Handling**: Robust failure recovery and notifications
+| Component | Excellent (25pts) | Good (20pts) | Satisfactory (15pts) | Needs Improvement (10pts) |
+|-----------|------------------|--------------|---------------------|---------------------------|
+| **Infrastructure** | Complete multi-region setup with all Azure services | Single region with most services | Basic AKS and database setup | Minimal infrastructure |
+| **CI/CD Pipeline** | Full GitOps with security scanning | Automated build/deploy | Basic CI/CD workflow | Manual deployment process |
+| **Monitoring** | Comprehensive observability stack | Basic monitoring setup | Limited metrics collection | No monitoring |
+| **Security** | Zero-trust with policy enforcement | Security scanning integrated | Basic security measures | Security overlooked |
+| **Documentation** | Complete runbooks and diagrams | Good documentation | Basic README | Minimal documentation |
 
-### Business Impact Delivered
-- **Time to Market**: 60% faster deployment cycles
-- **Reliability**: 99.99% uptime achievement
-- **Security**: Zero-trust implementation
-- **Compliance**: Automated regulatory adherence
-- **Cost**: 30% optimization through automation
+**Total Possible Points**: 150  
+**Passing Score**: 105 points (70%)
 
-### Next Steps for Production
-1. **Pilot Deployment**: Deploy to development environment
-2. **Security Review**: Conduct penetration testing
-3. **Performance Testing**: Validate under production load
-4. **Disaster Recovery**: Test failover procedures
-5. **Team Training**: Knowledge transfer to operations
+## 🎓 Learning Outcomes
+
+By completing this session, you will have learned:
+
+✅ **Infrastructure as Code**: Advanced Terraform patterns for Azure cloud resources  
+✅ **Container Orchestration**: Kubernetes and Helm for microservices deployment  
+✅ **CI/CD Automation**: GitHub Actions for build, test, and deployment pipelines  
+✅ **Monitoring & Observability**: Comprehensive monitoring with Azure Monitor and Prometheus  
+✅ **Security Integration**: DevSecOps practices with automated security scanning  
+✅ **Disaster Recovery**: Multi-region deployment and backup strategies  
+✅ **Performance Optimization**: Auto-scaling and performance tuning techniques  
+✅ **GitOps Practices**: Declarative deployment with ArgoCD
+
+## 💡 Copilot Tips & Best Practices
+
+### Effective Prompting Strategies
+
+1. **Context-Aware Prompts**:
+   ```
+   @azure create AKS cluster configuration for eShop with:
+   - 3-50 node auto-scaling
+   - Multiple node pools for different workloads
+   - Network policy support
+   - Azure AD integration
+   ```
+
+2. **Multi-Step Complex Tasks**:
+   ```
+   @workspace help me implement the following in sequence:
+   1. Create Terraform module for Azure SQL
+   2. Add connection string to Key Vault
+   3. Update application configuration
+   4. Create database initialization script
+   ```
+
+3. **Error Resolution**:
+   ```
+   @azure I'm getting this Terraform error: [paste error]
+   Help me diagnose and fix the issue
+   ```
+
+### Advanced Copilot Features
+
+- **Slash Commands**: Use `@azure`, `@workspace`, `@terminal` for context-specific help
+- **Multi-file Editing**: Reference multiple files in prompts for comprehensive changes
+- **Documentation Generation**: Auto-generate README files and architectural diagrams
+- **Code Review**: Ask Copilot to review your infrastructure code for best practices
+
+## 🔗 Additional Resources
+
+### Microsoft Documentation
+- [.NET eShop Reference Application](https://github.com/dotnet/eShop)
+- [Azure Well-Architected Framework](https://docs.microsoft.com/en-us/azure/architecture/framework/)
+- [AKS Best Practices](https://docs.microsoft.com/en-us/azure/aks/best-practices)
+- [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest)
+
+### Community Resources
+- [Helm Chart Best Practices](https://helm.sh/docs/chart_best_practices/)
+- [Kubernetes Security Best Practices](https://kubernetes.io/docs/concepts/security/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [ArgoCD Documentation](https://argo-cd.readthedocs.io/)
+
+### Troubleshooting Guides
+- [AKS Troubleshooting](https://docs.microsoft.com/en-us/azure/aks/troubleshooting)
+- [Terraform Common Issues](https://www.terraform.io/docs/configuration/troubleshooting.html)
+- [GitHub Actions Debugging](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows)
+
+## 🤝 Getting Help
+
+- **Instructor Support**: Raise your hand for complex infrastructure issues
+- **Peer Collaboration**: Work together on Terraform modules and Kubernetes manifests
+- **GitHub Copilot**: Use contextual prompts for code generation and problem-solving
+- **Documentation**: Refer to Azure and Kubernetes documentation for deep-dive topics
 
 ---
 
-**🚀 Ready for Session 4? Let's explore the cutting-edge Agent Mode for autonomous development!**
+**Next Session**: [Session 4 - AI Agent Mode](../session-4-agent-mode/README.md)
 
-### Common DevOps Challenges & Solutions
-
-#### State Management
-- Use remote state backends
-- Implement state locking
-- Version control state files
-- Regular backup procedures
-
-#### Secret Management
-- Never commit secrets to version control
-- Use managed identity where possible
-- Rotate secrets regularly
-- Audit secret access
-
-#### Deployment Rollbacks
-- Implement blue-green strategies
-- Use feature flags for safe rollouts
-- Automate rollback triggers
-- Maintain deployment histories
