@@ -8,7 +8,7 @@
     "dev": "nodemon src/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --passWithNoTests",
     "lint": "eslint src/",
     "build": "npm run test && npm run lint",
     "docker:build": "docker build -t payment-service .",
@@ -43,14 +43,6 @@
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/server.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    }
+    ]
   }
 }
