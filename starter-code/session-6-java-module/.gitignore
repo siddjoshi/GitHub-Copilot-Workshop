@@ -1,0 +1,24 @@
+# Build artifacts
+target/
+build/
+out/
+*.class
+
+# Go build artifacts
+*.exe
+fraud-detection-service
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+/tmp/
