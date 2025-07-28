@@ -1,0 +1,9 @@
+com/megabank/fraud/model/FraudAnalysisResult.class
+com/megabank/fraud/model/TransactionType.class
+com/megabank/fraud/service/FraudDetectionService.class
+com/megabank/fraud/model/Transaction.class
+com/megabank/fraud/service/FraudDetectionService$1.class
+com/megabank/fraud/FraudDetectionApplication.class
+com/megabank/fraud/controller/FraudDetectionController.class
+com/megabank/fraud/controller/FraudDetectionController$ServiceInfo.class
+com/megabank/fraud/model/RiskLevel.class

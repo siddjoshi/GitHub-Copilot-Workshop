@@ -1,0 +1,15 @@
+# Go build artifacts
+fraud-detection-service
+*.exe
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

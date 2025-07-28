@@ -1,0 +1,7 @@
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/model/RiskLevel.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/service/FraudDetectionService.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/model/TransactionType.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/model/FraudAnalysisResult.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/controller/FraudDetectionController.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/FraudDetectionApplication.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-6-java-module/src/main/java/com/megabank/fraud/model/Transaction.java
