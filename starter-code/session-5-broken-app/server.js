@@ -210,17 +210,19 @@ app.get('/health', (req, res) => {
 // BROKEN: No 404 handler
 // BROKEN: No error handling middleware
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`); // BROKEN: Console.log instead of proper logging
-  
-  // Seed some initial data for testing
-  products = [
-    { id: 1, name: 'Laptop', description: 'High-performance laptop', price: 999.99, category: 'electronics', stock: 10 },
-    { id: 2, name: 'Coffee Mug', description: 'Ceramic coffee mug', price: 12.99, category: 'kitchen', stock: 50 },
-    { id: 3, name: 'Book', description: 'Programming book', price: 29.99, category: 'books', stock: 25 }
-  ];
-});
+// Start server only if this file is run directly
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`); // BROKEN: Console.log instead of proper logging
+    
+    // Seed some initial data for testing
+    products = [
+      { id: 1, name: 'Laptop', description: 'High-performance laptop', price: 999.99, category: 'electronics', stock: 10 },
+      { id: 2, name: 'Coffee Mug', description: 'Ceramic coffee mug', price: 12.99, category: 'kitchen', stock: 50 },
+      { id: 3, name: 'Book', description: 'Programming book', price: 29.99, category: 'books', stock: 25 }
+    ];
+  });
+}
 
 // MEMORY LEAK SIMULATOR: This will cause gradual memory increase
 setInterval(() => {
@@ -229,5 +231,17 @@ setInterval(() => {
     sessions[token].data[Date.now()] = 'some data that accumulates';
   });
 }, 5000);
+
+// Function to seed data for testing
+function seedData() {
+  products = [
+    { id: 1, name: 'Laptop', description: 'High-performance laptop', price: 999.99, category: 'electronics', stock: 10 },
+    { id: 2, name: 'Coffee Mug', description: 'Ceramic coffee mug', price: 12.99, category: 'kitchen', stock: 50 },
+    { id: 3, name: 'Book', description: 'Programming book', price: 29.99, category: 'books', stock: 25 }
+  ];
+}
+
+// Seed data immediately for tests
+seedData();
 
 module.exports = app;
