@@ -214,6 +214,28 @@ This session builds upon excellent existing resources:
 - Implement champion/challenger model setup
 - Create statistical significance testing
 
+### 🎯 ML Wizard Achievement (>85% Accuracy)
+
+To unlock the ML Wizard badge, try the advanced optimization script:
+
+```bash
+python advanced_churn_prediction.py
+```
+
+**Key techniques for >85% accuracy:**
+- Advanced feature engineering (35+ features)
+- Hyperparameter tuning with GridSearchCV
+- Class imbalance handling with balanced weights
+- Ensemble methods and model stacking
+- Larger training dataset (1500+ samples)
+- Multiple XGBoost variants for diversity
+
+**Expected results:**
+- XGBoost Optimized: ~85.0% accuracy
+- Enhanced ensemble methods available
+- Comprehensive feature importance analysis
+- Production-ready model pipeline
+
 ## 💡 Copilot Best Practices for ML
 
 ### Effective Prompting

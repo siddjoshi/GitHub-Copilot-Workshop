@@ -168,6 +168,12 @@ class ChurnPredictor:
         tenure_churn = pd.crosstab(tenure_groups, self.data['Churn'], normalize='index') * 100
         print(tenure_churn.round(1))
         
+        print("\nMonthly Charges vs Churn:")
+        print("=" * 50)
+        charge_groups = pd.cut(self.data['MonthlyCharges'], bins=3, labels=['Low', 'Medium', 'High'])
+        charge_churn = pd.crosstab(charge_groups, self.data['Churn'], normalize='index') * 100
+        print(charge_churn.round(1))
+        
         # TODO: Add more EDA visualizations
         # Ask Copilot to help create:
         # - Distribution plots for numerical features
