@@ -49,11 +49,39 @@ This dataset contains customer information for predicting churn in a telecommuni
 
 ## Getting Started
 
-1. Load the dataset using pandas
-2. Perform exploratory data analysis
-3. Clean and preprocess the data
-4. Engineer relevant features
-5. Build and evaluate machine learning models
+### Quick Setup
+
+1. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Run the Basic Pipeline**:
+   ```bash
+   python churn_prediction.py
+   ```
+
+3. **Run Tests**:
+   ```bash
+   python test_churn_prediction.py
+   ```
+
+### What You'll Get
+
+- **Realistic Dataset**: 1000 customers with 19-25% churn rate
+- **Working Pipeline**: Complete ML workflow from data to models
+- **Multiple Models**: Random Forest, Logistic Regression, XGBoost
+- **Performance**: 80%+ accuracy achievable, 85%+ with optimization
+- **Testing Suite**: Validates data quality and model performance
+
+### Workshop Flow
+
+1. **Data Exploration (20 min)**: Use Copilot for comprehensive EDA
+2. **Feature Engineering (25 min)**: Create predictive features with AI assistance  
+3. **Model Training (25 min)**: Build and compare multiple models
+4. **Evaluation (20 min)**: Analyze performance and interpretability
+5. **Testing (15 min)**: Validate pipeline with comprehensive tests
+6. **MLOps (15 min)**: Prepare for deployment and monitoring
 
 ## Sample Code
 
