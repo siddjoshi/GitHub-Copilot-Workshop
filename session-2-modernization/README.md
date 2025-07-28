@@ -1,6 +1,6 @@
 # 🔧 Session 2: Code Modernization with AI
 
-**Duration:** 45 minutes  
+**Duration:** 80 minutes  
 **Difficulty:** Intermediate-Advanced  
 **Points Available:** 60 points
 
@@ -48,36 +48,51 @@ MegaBank has a 10-year-old Spring Boot 1.5 application that needs urgent moderni
 - Maven 3.9+
 - Docker Desktop
 - Node.js 20+ (for UI modernization)
-- **Java Upgrade Assistant CLI** (for automated migration analysis)
+- **OpenRewrite Maven Plugin** (for automated migration analysis)
+- **Spring Boot Migrator** (for comprehensive modernization)
 
-### Java Upgrade Assistant Integration
+### Automated Java Modernization Tools Integration
 
-This session leverages the **Java Upgrade Assistant** to enhance Copilot's modernization capabilities:
+This session leverages automated modernization tools to enhance Copilot's capabilities:
 
-#### Installation
+#### OpenRewrite Integration
 ```bash
-# Install Java Upgrade Assistant CLI
-curl -sSL https://aka.ms/java-upgrade-assistant | bash
-# or download from: https://github.com/microsoft/upgrade-assistant
+# Add OpenRewrite Maven plugin to pom.xml
+<plugin>
+    <groupId>org.openrewrite.maven</groupId>
+    <artifactId>rewrite-maven-plugin</artifactId>
+    <version>5.36.0</version>
+</plugin>
+
+# Run Spring Boot 2->3 migration
+mvn rewrite:run -Drewrite.recipeArtifactCoordinates=org.openrewrite.recipe:rewrite-spring:RELEASE
+```
+
+#### Spring Boot Migrator (SBM)
+```bash
+# Clone and run Spring Boot Migrator
+git clone https://github.com/spring-projects-experimental/spring-boot-migrator.git
+cd spring-boot-migrator
+./mvnw install -DskipTests
+java -jar applications/spring-shell/target/spring-boot-migrator.jar
 ```
 
 #### Key Benefits
 - **Automated Analysis**: Identifies upgrade blockers and compatibility issues
-- **Copilot Synergy**: Use assistant findings to inform Copilot prompts
-- **Best Practices**: Follows Microsoft's Java modernization patterns
+- **Copilot Synergy**: Use tool findings to inform Copilot prompts
+- **Best Practices**: Follows Spring community modernization patterns
 - **Step-by-Step Guidance**: Structured approach to complex migrations
 
 #### Integration Workflow
-1. **Run Upgrade Assistant** to analyze current codebase
+1. **Run OpenRewrite/SBM** to analyze current codebase
 2. **Review findings** and prioritize upgrade tasks
-3. **Use Copilot** with assistant context for implementation
-4. **Validate changes** using assistant recommendations
+3. **Use Copilot** with tool context for implementation
+4. **Validate changes** using automated recommendations
 
 ### Workshop Repository
 ```bash
-# Clone the legacy application
-git clone https://github.com/workshop/legacy-banking-app
-cd legacy-banking-app/session-2
+# Navigate to the legacy application in this repository
+cd starter-code/session-2-legacy-banking
 ```
 
 ### Latest Copilot Features for This Session
@@ -88,7 +103,7 @@ cd legacy-banking-app/session-2
 
 ## 👣 Step-by-Step Walkthrough
 
-### Phase 1: Legacy Code Analysis (10 minutes)
+### Phase 1: Legacy Code Analysis (15 minutes)
 
 #### 🎯 Checkpoint 2.1: Comprehensive Code Audit
 **Points:** 15 points
@@ -147,7 +162,7 @@ cd legacy-banking-app/session-2
    - Better for complex dependency analysis
    - Superior reasoning about breaking changes
 
-### Phase 2: Systematic Code Modernization (20 minutes)
+### Phase 2: Systematic Code Modernization (35 minutes)
 
 #### 🎯 Checkpoint 2.3: Spring Boot Migration
 **Points:** 20 points
@@ -217,7 +232,7 @@ cd legacy-banking-app/session-2
    - Stream API enhancements
    ```
 
-### Phase 3: UI Modernization with Image Analysis (10 minutes)
+### Phase 3: UI Modernization with Image Analysis (20 minutes)
 
 #### 🎯 Checkpoint 2.5: UI Analysis from Screenshots
 **Points:** 15 points
@@ -263,7 +278,7 @@ cd legacy-banking-app/session-2
    - Dark/light theme support
    ```
 
-### Phase 4: Testing & Deployment Modernization (5 minutes)
+### Phase 4: Testing & Deployment Modernization (10 minutes)
 
 #### 🎯 Checkpoint 2.6: Test Modernization
 **Points:** 10 points

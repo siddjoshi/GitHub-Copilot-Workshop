@@ -1,2 +1,6 @@
 /home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-2-legacy-banking/src/main/java/com/megabank/banking/LegacyBankingApplication.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-2-legacy-banking/src/main/java/com/megabank/banking/model/Account.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-2-legacy-banking/src/main/java/com/megabank/banking/repository/AccountRepository.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-2-legacy-banking/src/main/java/com/megabank/banking/controller/AccountController.java
 /home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-2-legacy-banking/src/main/java/com/megabank/banking/config/LegacySecurityConfig.java
+/home/runner/work/GitHub-Copilot-Workshop/GitHub-Copilot-Workshop/starter-code/session-2-legacy-banking/src/main/java/com/megabank/banking/service/AccountService.java
