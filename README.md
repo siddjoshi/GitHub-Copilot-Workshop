@@ -1,7 +1,26 @@
 # 🚀 GitHub Copilot Mastery Workshop: Extended Edition
 
 ## 🎯 Workshop Overview
+
 This comprehensive workshop provides hands-on experience with the latest GitHub Copilot features, including **Agent Mode**, **Edit Mode**, **Chat Participants**, **Slash Commands**, and advanced prompt engineering techniques across the entire software development lifecycle.
+
+```mermaid
+graph LR
+    A[🎯 Session 1<br/>AI-Powered SDLC] --> B[🔧 Session 2<br/>Code Modernization]
+    B --> C[🚀 Session 3<br/>Advanced DevOps]
+    C --> D[🤖 Session 4<br/>Agent Mode Deep Dive]
+    D --> E[🧪 Session 5<br/>Application Maintenance]
+    E --> F[🌐 Session 6<br/>Cross-Language Rewriting]
+    F --> G[📊 Session 7<br/>Data Science & ML]
+    
+    classDef foundation fill:#e8f5e8,stroke:#2e7d32
+    classDef advanced fill:#e3f2fd,stroke:#1565c0
+    classDef specialized fill:#fff3e0,stroke:#ef6c00
+    
+    class A,B,C foundation
+    class D,E advanced
+    class F,G specialized
+```
 
 ### Target Audience
 - Intermediate to advanced developers
@@ -57,6 +76,17 @@ Each session follows this format:
 - **👣 Step-by-Step Guide** (hands-on activities)
 - **📍 Checkpoints** (validation milestones)
 - **🎉 Wrap-Up** (key takeaways)
+
+## 📖 Comprehensive Documentation
+
+For detailed architectural diagrams, visual guides, and implementation details, see our **[comprehensive documentation](./docs/README.md)**:
+
+| Documentation Type | Description | Quick Access |
+|-------------------|-------------|--------------|
+| 🏗️ **Architecture** | Workshop structure, session flow, technical setup | [View Architecture](./docs/architecture/workshop-overview.md) |
+| 🚀 **Copilot Features** | Visual guide to all GitHub Copilot capabilities | [View Features Guide](./docs/visual-guides/copilot-features.md) |
+| 🩺 **Troubleshooting** | Flowcharts for common issues and solutions | [View Troubleshooting](./docs/visual-guides/troubleshooting.md) |
+| 🎮 **Assessment System** | Gamification, scoring, and progress tracking | [View Assessment](./docs/visual-guides/assessment-flow.md) |
 
 ## 🧰 Tools & Technologies
 
