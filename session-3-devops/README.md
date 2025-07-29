@@ -56,6 +56,94 @@ We'll deploy the .NET eShop application with this cloud-native architecture:
     └─────────────────┘  └─────────────┘
 ```
 
+### Detailed Infrastructure Components
+
+```mermaid
+graph TB
+    subgraph "Global Layer"
+        GL1[Azure Front Door]
+        GL2[Azure Traffic Manager] 
+        GL3[Azure WAF]
+        GL4[Azure CDN]
+    end
+
+    subgraph "Primary Region: East US"
+        subgraph "Compute Tier"
+            CT1[AKS Cluster]
+            CT2[Node Pools]
+            CT3[Container Registry]
+        end
+        
+        subgraph "Application Services"
+            AS1[Catalog API]
+            AS2[Basket API] 
+            AS3[Ordering API]
+            AS4[Payment API]
+            AS5[Identity API]
+            AS6[Web MVC]
+            AS7[Web SPA]
+        end
+        
+        subgraph "Data Layer"
+            DL1[Azure SQL Database]
+            DL2[Redis Cache]
+            DL3[Azure Service Bus]
+            DL4[Azure Storage]
+        end
+        
+        subgraph "Security & Monitoring"
+            SM1[Key Vault]
+            SM2[Log Analytics]
+            SM3[Application Insights]
+            SM4[Azure Monitor]
+        end
+    end
+
+    subgraph "DR Region: West US 2"
+        DR1[AKS Cluster Replica]
+        DR2[SQL Database Replica]
+        DR3[Storage Replica]
+        DR4[Monitoring Replica]
+    end
+
+    GL1 --> CT1
+    GL2 --> DR1
+    GL3 --> AS1
+    GL4 --> AS6
+
+    CT1 --> AS1
+    CT1 --> AS2
+    CT1 --> AS3
+    CT1 --> AS4
+    CT1 --> AS5
+    CT1 --> AS6
+    CT1 --> AS7
+
+    AS1 --> DL1
+    AS2 --> DL2
+    AS3 --> DL3
+    AS4 --> DL4
+    AS5 --> SM1
+
+    DL1 --> DR2
+    DL4 --> DR3
+    SM2 --> DR4
+
+    classDef global fill:#e3f2fd,stroke:#1565c0
+    classDef compute fill:#e8f5e8,stroke:#2e7d32
+    classDef application fill:#fff3e0,stroke:#ef6c00
+    classDef data fill:#f3e5f5,stroke:#7b1fa2
+    classDef security fill:#fce4ec,stroke:#c2185b
+    classDef dr fill:#ffebee,stroke:#d32f2f
+
+    class GL1,GL2,GL3,GL4 global
+    class CT1,CT2,CT3 compute
+    class AS1,AS2,AS3,AS4,AS5,AS6,AS7 application
+    class DL1,DL2,DL3,DL4 data
+    class SM1,SM2,SM3,SM4 security
+    class DR1,DR2,DR3,DR4 dr
+```
+
 ## 🛠️ Prerequisites Setup
 
 ### Required Tools Verification
